@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>轻量级 CNN 手写数字分类系统</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <div>
+      <p class="eyebrow">计算机视觉课程大作业</p>
+      <h1>轻量级 CNN 手写数字分类系统</h1>
+      <p>卷积、池化、反向传播与 Adam 均使用 NumPy 手写实现</p>
+    </div>
+    <nav><button id="demoTab" class="nav-active">在线识别</button><button id="resultsTab">实验结果</button></nav>
+  </header>
+
+  <main>
+    <section id="demoPanel" class="panel-grid">
+      <article class="canvas-panel">
+        <div class="section-heading"><h2>输入图像</h2><span>白色笔迹，黑色背景</span></div>
+        <canvas id="canvas" width="280" height="280"></canvas>
+        <div class="actions">
+          <button id="clearBtn" class="secondary">清空画布</button>
+          <button id="sampleBtn" class="secondary">换一个测试样本</button>
+          <button id="predictBtn" class="primary">开始识别</button>
+        </div>
+        <p id="sampleInfo" class="hint">正在载入真实 MNIST 测试样本</p>
+      </article>
+
+      <article class="result-panel">
+        <div class="section-heading"><h2>识别结果</h2><span id="status">模型已加载</span></div>
+        <div class="prediction-row">
+          <div><span class="label">预测数字</span><strong id="prediction">-</strong></div>
+          <div><span class="label">置信度</span><strong id="confidence">-</strong></div>
+        </div>
+        <h3>各类别概率</h3>
+        <div id="bars" class="bars"></div>
+        <div class="model-note">
+          <span>模型结构</span>
+          <p>14×14 输入　3×3 卷积　ReLU　2×2 最大池化　全连接　Softmax</p>
+        </div>
+      </article>
+    </section>
+
+    <section id="resultsPanel" class="results hidden">
+      <div class="metrics" id="metrics"></div>
+      <div class="figure-grid">
+        <article><h2>训练过程</h2><img src="/artifacts/training_curves.png" alt="训练过程曲线"></article>
+        <article><h2>混淆矩阵</h2><img src="/artifacts/confusion_matrix.png" alt="测试集混淆矩阵"></article>
+      </div>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
